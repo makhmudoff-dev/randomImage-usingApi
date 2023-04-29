@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Random Image from Unsplash API</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    img {
+      margin-top: 50px;
+      border: none;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <br /><br />
+      <h1 class="text-center">Random Images Using Javascript</h1>
+      <!-- <div class="form-group">
+        <input
+          type="text"
+          id="search"
+          class="form-control"
+          placeholder="search image"
+        />
+      </div> -->
+      <button id="get-image-button" class="btn btn-block btn-danger">
+        Get Photo
+      </button>
+      <div>
+        <img id="image" width="690" height="500" b="none" />
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        // API access key
+        const accessKey = '_UTg-Kvv-SmjULg0dHO1iRWWkxvVIfxn7e0-8OuPc3c';
+
+        // Event listener for button click
+        $('#get-image-button').on('click', function () {
+          // Make request to Unsplash API
+          $.get(
+            `https://api.unsplash.com/photos/random?client_id=${accessKey}`,
+            function (data) {
+              // Set image source to returned URL
+              $('#image').attr('src', data.urls.regular);
+            }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
